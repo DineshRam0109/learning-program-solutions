@@ -1,0 +1,21 @@
+CREATE OR REPLACE PROCEDURE UpdateEmployeeBonus (
+  dept_name IN VARCHAR2,
+  bonus_pct IN NUMBER
+) IS
+BEGIN
+  FOR rec IN (
+    SELECT emp_id, name, salary
+    FROM employees
+    WHERE department = dept_name
+  ) LOOP
+    UPDATE employees
+    SET salary = salary + (salary * bonus_pct / 100)
+    WHERE emp_id = rec.emp_id;
+
+    DBMS_OUTPUT.PUT_LINE('Bonus added to Employee ID: ' || rec.emp_id ||
+                         ' | Name: ' || rec.name ||
+                         ' | New Salary: ' || TO_CHAR(rec.salary * (1 + bonus_pct / 100), 'FM999999.00'));
+  END LOOP;
+
+  COMMIT;
+END;
