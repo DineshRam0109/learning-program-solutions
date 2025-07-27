@@ -6,9 +6,9 @@ function App() {
     <div>
       <CalculateScore
         Name="Dinesh Ram A"
-        School="St.Thomas Matric hr Sec School"
-        total={467}
-        goal={499}
+        School="St.Thomas CBSE School"
+        total={490}
+        goal={98%}
       />
     </div>
   );
